@@ -1,6 +1,7 @@
+#Simon Moffatt
+#To file and to screen log manager
+
 module Logger
-  
-  class Logger
     
     #globals #########################################################################################
     $log_file = "../identelligence.log"
@@ -8,7 +9,7 @@ module Logger
     #globals #########################################################################################
     
     #Log writer
-    def self.write_to_log log_message
+    def Logger.write_to_log message
       
       date=Time.now.strftime("%d-%m-%Y_%H:%M:%S") #more detailed date as $date can't contain :
       
@@ -16,13 +17,20 @@ module Logger
         
         File.open($log_file,"a") do |log|
       
-          log.puts "#{date} Fingerprint.rb #{log_message}"
+          log.puts "#{date} Fingerprint.rb #{message}"
          
         end
       end
         
     end #write_log
     
-  end #class
-   
+    #write to screen
+    def Logger.print_to_screen message
+      
+      #do something with message to push to console
+      
+      
+    end
+    
 end #module
+   

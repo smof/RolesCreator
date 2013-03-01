@@ -1,0 +1,4 @@
+#Identelligence YML config file.  Changeable values in GREEN only
+inputs:
+  identities: 
+    file: identities.csv
