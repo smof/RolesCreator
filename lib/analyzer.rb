@@ -6,88 +6,63 @@ require './lib/file_manager'
 require './lib/logger'
 
 
-  class Analyzer
+module Analyzer
 
-    #load YML properties
-    yml_file = 'config.yml'
-    config = YAML::load(File.open(yml_file))
+    #class globals
+    @accounts = {} #system
+    @role_users = {} #hash of roles mapped to array of users
+    @role_entitlements = {} # hash of role entitlements per system
+    @user_exceptions = {} # hash of user and entitlements that fall outside of the role framework
+    @functions = [] #top down unique functional groupings
 
-    #general constants
-    DATE=Time.now.strftime("%d-%m-%Y_%H%M") #date formatter
-    MULTIVALUE_DELIMITER = ";" #for splitting multi-value entitlements
-        
-    #data files ###########################################################################################
-    #authoritative source input
-    IDENTITIES_INPUT = config['inputs']['identities']['file']
-    #IDENTITIES_INPUT = "identities.csv" # authoritative source of users from HR etc
-    IDENTITIES_INPUT_COL_SEPARATOR = "," #column / field separator
-    IDENTITIES_INPUT_HEADER_LINE = true # if first row contains column names
-    IDENTITIES_UUID_INDEX = 1 #the field in the HR file that contains the unique identifier.  employeeid; email address etc
-    IDENTITIES_FUNCTION_INDEX = 5 #the field in the HR file contains the attribute for creating roles.  job-title; dept; team etc
-  
-    #raw system entitlements files input
-    ACCOUNTS_INPUT = "accounts.csv" # accounts input file of entitlements from target system
-    ACCOUNTS_INPUT_COL_SEPARATOR = ","
-    ACCOUNTS_INPUT_HEADER_LINE = true # if first row contains column names
-    ACCOUNTS_UUID_INDEX = 0 # the field in the Accounts file that contains the unique identifier.  AccountID; email address etc;
-    ACCOUNTS_PERMISSION_INDEX = 2 #the field in the Accounts file that contains the permissions to mine. group; memberOf etc
-  
-    #if role mining has already been completed
-    ROLE_USERS_INPUT = "role_users.csv" # role1,user1;user2 etc
-    ROLE_USERS_INPUT_COL_SEPARATOR = ","
-    ROLE_USERS_INPUT_HEADER_LINE = false
-    ROLE_ENTITLEMENTS_INPUT = "role_entitlements.csv" # role1,read;edit etc
-    ROLE_ENTITLEMENTS_INPUT_COL_SEPARATOR = ","
-    ROLE_ENTITLEMENTS_INPUT_HEADER_LINE = false
-  
-    #outputs
-    ROLE_USERS_OUTPUT = "identelligence_role_users_#{DATE}.csv"
-    ROLE_ENTITLEMENTS_OUTPUT = "identelligence_role_entitlements_#{DATE}.csv"
-    USER_EXCEPTIONS_OUTPUT = "identelligence_user_exceptions_#{DATE}.csv"
     
-    #initialize globals
-    def initialize
+    #reads in accounts file
+    def Analyzer.read_accounts path, col_separator, header
       
-
-                  
-      #class globals
-      @accounts = {} #system
-      @role_users = {} #hash of roles mapped to array of users
-      @role_entitlements = {} # hash of role entitlements per system
-      @user_exceptions = {} # hash of user and entitlements that fall outside of the role framework
-      @functions = [] #top down unique functional groupings
-    
-      #temporary initialization
-      #@@accounts = {"smof"=>["read","write"], "john"=>["read","edit"], "clare"=>["execute", "read"], "vicki"=>["blog"]}
-      @@accounts = File_Manager::read_file(ACCOUNTS_INPUT,ACCOUNTS_INPUT_COL_SEPARATOR, ACCOUNTS_INPUT_HEADER_LINE)
-      #@@accounts = [["smof",["read","write"]],["vicki",["read"]],["john",["edit"]]]
-      #@@identities = [["smof","IT"], ["john","Sales"], ["clare","Sales"], ["vicki","PR"]]
-      @@identities = File_Manager::read_file(IDENTITIES_INPUT,IDENTITIES_INPUT_COL_SEPARATOR, IDENTITIES_INPUT_HEADER_LINE)
+      #@@accounts = File_Manager::read_file(ACCOUNTS_INPUT,ACCOUNTS_INPUT_COL_SEPARATOR, ACCOUNTS_INPUT_HEADER_LINE)
+      @@accounts = File_Manager::read_file path, col_separator, header
       
     end
     
-    #convert hash into array of formatted strings ready for writing out.  not sure if a simpler way?
-
-    
+    #reads in identities file
+    def Analyzer.read_identities path, col_separator, header
+      
+      #@@identities = File_Manager::read_file(IDENTITIES_INPUT,IDENTITIES_INPUT_COL_SEPARATOR, IDENTITIES_INPUT_HEADER_LINE)
+      @@identities = File_Manager::read_file path, col_separator, header
+      
+    end
+        
     #analyses auth source, picks out attributes used for grouping and creates a unique array of them
-    def get_functional_groups
+    def Analyzer.get_functional_groups identities_function_index
 
-      @@identities.each {|id| @functions << id[IDENTITIES_FUNCTION_INDEX]}
+      @@identities.each {|id| @functions << id[identities_function_index]}
       @functions.uniq! #de-dupe
       @functions.each {|func| puts func}
       
     end
 
-    #create shell roles
-    def create_shell_roles
+
+    #analyses user entitlements based on a peer based functional grouping
+    def Analyzer.perform_peer_analysis
       
+      
+      
+    end
+
+
+    #create shell roles
+    def Analyzer.create_role_users identities_uid_index, identities_function_index
+      
+        #get list of unique of function groups from auth source
+        get_functional_groups identities_function_index
+        
         #populate the role_users hash with the names of the top down roles as keys
         @functions.each {|function| @role_users[function] = [] } #empty array will be for users of that role
 
         #populate role_users hash with users for each role
         @functions.each do |function| 
           
-          @@identities.each {|identity| @role_users[function] << identity[IDENTITIES_UUID_INDEX] if function == identity[IDENTITIES_FUNCTION_INDEX] } 
+          @@identities.each {|identity| @role_users[function] << identity[identities_uid_index] if function == identity[identities_function_index] } 
         
         end
  
@@ -99,7 +74,7 @@ require './lib/logger'
     end
 
     #create role entitlements
-    def create_role_entitlements
+    def Analyzer.create_role_entitlements accounts_uid_index, accounts_mv_col_separator, accounts_permission_index
       
         #create keys for role_entitlements hash
         @role_users.keys.each {|role| @role_entitlements[role] = [] }
@@ -113,10 +88,10 @@ require './lib/logger'
               @@accounts.each  do |acc| #iterate over the raw accounts feed
                 
                 #need to add some modular regex magic in here...
-                if role_user == acc[ACCOUNTS_UUID_INDEX] #if user in shell role matches uuid in account
+                if role_user == acc[accounts_uid_index] #if user in shell role matches uuid in account
                                    
                      #pull out entitlements and put in temporary array of arrays, but only if non-empty
-                     tmp << acc[ACCOUNTS_PERMISSION_INDEX].split(MULTIVALUE_DELIMITER) unless acc[ACCOUNTS_PERMISSION_INDEX].to_s.empty?
+                     tmp << acc[accounts_permission_index].split(accounts_mv_col_separator) unless acc[accounts_permission_index].to_s.empty?
                   
                 end
                 
@@ -139,20 +114,20 @@ require './lib/logger'
     
     
     #analyze user exceptions
-    def create_user_exceptions
+    def Analyzer.create_user_exceptions acc_uid_index, acc_permission_index, acc_mv_separator
       
       #create keys for user exceptions hash
-      @@accounts.each {|account| @user_exceptions[account[ACCOUNTS_UUID_INDEX]] = [] }
+      @@accounts.each {|account| @user_exceptions[account[acc_uid_index]] = [] }
       
       @@accounts.each do |account| #iterate over the accounts list
         
         tmp = [] #temp array containing all entitlements given by roles
         @role_users.each do |role,users| #iterate over the role users data
           
-          if users.include? account[ACCOUNTS_UUID_INDEX] #if user if a member of a role
+          if users.include? account[acc_uid_index] #if user if a member of a role
             
             #find exceptions for that role based on difference between actual account and role entitlements
-            tmp << account[ACCOUNTS_PERMISSION_INDEX].split(MULTIVALUE_DELIMITER) - @role_entitlements[role] unless account[ACCOUNTS_PERMISSION_INDEX].to_s.empty?
+            tmp << account[acc_permission_index].split(acc_mv_separator) - @role_entitlements[role] unless account[acc_permission_index].to_s.empty?
             
           end
           
@@ -175,37 +150,42 @@ require './lib/logger'
     end
     
     
-    #monkey patch to hash.  probably needs moving out. returns array with string representation of hash contents
-    def self.flatten_hash_for_writing hash
 
-      array_of_strings = []
-      hash.each do |key,value| 
-        
-        if value.to_s.empty?
-          
-          array_of_strings << "#{key},#{value}"
-          
-        else
-        
-          array_of_strings << "#{key},#{value.join(";")}"
-            
-        end
 
+    #read in shell roles and users if already created in external file
+    def Analyzer.read_role_users role_users_input, role_users_input_col_separator, role_users_header, role_users_multivalue_separator
+      
+      #read in role user file array of arrays
+      role_users_csv = File_Manager::read_file(role_users_input, role_users_col_separator, role_users_header) 
+      
+      #split out CSV into hash so can be used
+      role_users_csv.each do |role| 
+        
+        @role_users[role[0]] = role[1].split(role_users_multivalue_separator)
+        
       end
       
-      return array_of_strings
-
-    end
-
-    #read in shell roles and users if already created and exist in external file
-    def read_shell_roles
-      
-      File_Manager::read_file 
-      roles_a.each {|role| roles_h[role[0]] = role[1]}
-      
+      return @role_users
       
     end
 
+
+    #read in role entitlements if already created in external file
+    def Analyzer.read_role_entitlements role_entitlements_input, role_entitlements_col_separator, role_entitlements_header, role_entitlements_mv
+      
+      #read in role user file array of arrays
+      role_entitlements_csv = File_Manager::read_file(role_entitlements_input, role_entitlements_col_separator, role_entitlements_header) 
+      
+      #split out CSV into hash so can be used
+      role_entitlements_csv.each do |role| 
+        
+        @role_entitlements[role[0]] = role[1].split(role_entitlements_mv)
+        
+      end
+      
+      return @role_entitlements
+      
+    end         
          
         
         

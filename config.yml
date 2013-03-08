@@ -1,4 +1,46 @@
-#Identelligence YML config file.  Changeable values in GREEN only
-inputs:
+#Identelligence YML config file.  Changeable values to right of colon (:) only!
+analyzer:
+  create_role_users: true #performs top down role mining for shell roles.  requires identities file. if set to false requires role users file
+  create_role_entitlements: true #creates entitlements for new or existing roles. requires either identities / role users file and accounts file
+  create_user_exceptions: false #finds user entitlements outside of role framework. Requires accounts file and new/existing role/entitlements files
+  perform_peer_analysis: false #compares users based on functional grouping looking for exceptional entitlements
+        
+input:
   identities: 
-    file: identities.csv
+    file: identities.csv #path to authoritative source file (relative to this file)
+    col_separator: ',' #column separator for identities file
+    header_line: true #does the first row of the identities file contain column names?
+    uuid_index: 1 #zero-based index position of the identities file unique identifier. Eg employeeid
+    function_index: 5 #zero-based index position of the function attribute.  Eg deptartment
+  accounts:
+    file: accounts.csv #path to the system entitlements file (relative to this file)
+    col_separator: ',' #column separator for accounts file
+    header_line: true #does the first row of the accounts file contain column names?
+    uuid_index: 0 #zero-based index position of the accounts file unique identifier. Eg userid
+    permission_index: 2 #zero-based index position of the permission attribute. Eg memberOf
+    multivalue_separator: ';' #separates multi-valued permissions.  Eg. CN=group1;CN=group2 
+  role_users:
+    file: role_users.csv #path to a pre-created role to user file listing (relative to this file)
+    col_separator: ',' #column separator for role users file 
+    header_line: false #does the first row of the role users file contain column names?
+    multivalue_separator: ';' #separates role user values
+  role_entitlements:
+    file: role_entitlements.csv #path to the pre-created role to entitlements file (relative to this file)
+    col_separator: ',' #column separator for role entitlements file
+    header_line: false #does the first row of the role entitlements file contain column names?
+    multivalue_separator: ';' #separates role entitlements values
+
+output:
+  role_users:
+    file: identelligence_role_users.xml #name of role to user file. Eg. my_role_users.xml
+    format: xml #xml; json; csv
+  role_entitlements:
+    file: identelligence_role_entitlements.xml #name of the role to entitlements file. Eg. my_role_entitlements.xml
+    format: xml #xml; json; csv
+  user_exceptions:
+    file: identelligence_user_exceptions.csv #name of the user exceptions file. Eg user_exceptions.csv
+    format: csv #xml; json; csv
+    
+regex:
+    identities-accounts: // #regular expression to map identities to accounts file
+    role_users-accounts: // #regular expression to map role users to accounts file
