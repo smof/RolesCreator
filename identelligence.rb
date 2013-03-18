@@ -16,8 +16,18 @@ module Identelligence
 
   #slurp in YML config options
   yml_file = 'config.yml'
-  config = YAML::load(File.open(yml_file))
-
+  if File.exist? yml_file
+    
+      config = YAML::load(File.open(yml_file))
+      Logger::log_info "YML file #{yml_file} loaded successfully"
+      
+  else
+    
+      Logger::log_error "YML config file #{yml_file} not found. Exiting"
+      exit
+        
+  end
+  
   #analyzer options pulled in from config.yml
   CREATE_ROLE_USERS = config['analyzer']['create_role_users']
   CREATE_ROLE_ENTITLEMENTS = config['analyzer']['create_role_entitlements']
@@ -58,36 +68,41 @@ module Identelligence
   USER_EXCEPTIONS_OUTPUT_FORMAT = config['output']['user_exceptions']['format']
   USER_EXCEPTIONS_OUTPUT = config['output']['user_exceptions']['file']
   
+  #logging
+  Logger::WRITE_TO_FILE = config['logging']['write_to_file']
+  Logger::PRINT_TO_SCREEN = config['logging']['print_to_screen']
   
-  
+    
   #run through
-  puts "#{Time.now} Starting Identelligence..."
-  puts "==============================================================="
-  
+  Logger::log_info "Starting..."
+      
   #see what options have been set in the config file
   if CREATE_ROLE_USERS
     
+    Logger::log_info "Creating new shell roles..."
+    
     #read in auth source
+    Logger::log_info "Reading identities..."
     Analyzer::read_identities IDS_INPUT, IDS_INPUT_COL_SEPARATOR, IDS_INPUT_HEADER_LINE
-    puts "Creating new shell roles..."
-    puts "==============================================================="
+    
+    
     #create shell roles
+    Logger::log_info "Creating roles..."
     role_users = Analyzer::create_role_users IDS_UID_INDEX, IDS_FUNCTION_INDEX
-    puts "Writing out roles file..."
-    puts "==============================================================="
+    
+        
     #write out to file
     File_Manager::write_file ROLE_USERS_OUTPUT, ROLE_USERS_OUTPUT_FORMAT, role_users, "RU"
-    
+        
   else
  
     #only bother with this stuff if other options are true and role user file needs to be read in
     if CREATE_ROLE_ENTITLEMENTS || CREATE_USER_EXCEPTIONS
     
        puts "Reading in shell roles..."
-       puts "==============================================================="
        roles = Analyzer::read_role_users ROLE_USERS_INPUT, ROLE_USERS_INPUT_COL_SEPARATOR, 
             ROLE_USERS_INPUT_HEADER_LINE, ROLE_USER_MULTIVALUE_SEPARATOR
-                     
+                         
     end
      
     
@@ -97,10 +112,11 @@ module Identelligence
   
       Analyzer::read_accounts ACC_INPUT, ACC_INPUT_COL_SEPARATOR, ACC_INPUT_HEADER_LINE
       puts "Creating role entitlements..."
-      puts "==============================================================="
+      
       role_entitlements = Analyzer::create_role_entitlements ACC_UID_INDEX, ACC_MULTIVALUE_COL_SEPARATOR, ACC_PERMISSION_INDEX
+      
       puts "Writing role entitlements..."
-      puts "==============================================================="
+      
       File_Manager::write_file ROLE_ENTS_OUTPUT, ROLE_ENTS_OUTPUT_FORMAT, role_entitlements, "RE"  
         
   else
@@ -108,26 +124,22 @@ module Identelligence
       #only bother with this is user exceptions need creating
       if CREATE_USER_EXCEPTIONS
         
-        Analyzer::read_accounts ACC_INPUT, ACC_INPUT_COL_SEPARATOR, ACC_INPUT_HEADER_LINE
         puts "Reading in role entitlements..."
-        puts "==============================================================="
+        Analyzer::read_accounts ACC_INPUT, ACC_INPUT_COL_SEPARATOR, ACC_INPUT_HEADER_LINE
+                
         #populate role entitlements from existing source    
         Analyzer::read_role_entitlements ROLE_ENTS_INPUT, ROLE_ENTS_COL_SEPARATOR, 
                 ROLE_ENTS_HEADER_LINE, ROLE_ENTS_MULTIVALUE_SEPARATOR 
       end   
-   
-       
+          
   end
   
   if CREATE_USER_EXCEPTIONS
-      
-      
+            
       puts "Creating user exceptions..."
-      puts "==============================================================="
-      user_exceptions = Analyzer::create_user_exceptions ACC_UID_INDEX, ACC_PERMISSION_INDEX, ACC_MULTIVALUE_SEPARATOR
+      user_exceptions = Analyzer::create_user_exceptions ACC_UID_INDEX, ACC_PERMISSION_INDEX, ACC_MULTIVALUE_COL_SEPARATOR
       puts "Writing user exceptions..."
-      puts "==============================================================="
-      File_Manager::write_file Analyzer::USER_EXCEPTIONS_OUTPUT, USER_EXCEPTIONS_OUTPUT_FORMAT, user_exceptions, "UE"
+      File_Manager::write_file USER_EXCEPTIONS_OUTPUT, USER_EXCEPTIONS_OUTPUT_FORMAT, user_exceptions, "UE"
         
   end
   
@@ -138,7 +150,6 @@ module Identelligence
     
   end
   
-  puts "#{Time.now} Finito :)"
-  puts "==============================================================="
+  
 
 end #module

@@ -19,15 +19,13 @@ module Analyzer
     #reads in accounts file
     def Analyzer.read_accounts path, col_separator, header
       
-      #@@accounts = File_Manager::read_file(ACCOUNTS_INPUT,ACCOUNTS_INPUT_COL_SEPARATOR, ACCOUNTS_INPUT_HEADER_LINE)
       @@accounts = File_Manager::read_file path, col_separator, header
       
     end
     
     #reads in identities file
     def Analyzer.read_identities path, col_separator, header
-      
-      #@@identities = File_Manager::read_file(IDENTITIES_INPUT,IDENTITIES_INPUT_COL_SEPARATOR, IDENTITIES_INPUT_HEADER_LINE)
+           
       @@identities = File_Manager::read_file path, col_separator, header
       
     end
@@ -37,7 +35,8 @@ module Analyzer
 
       @@identities.each {|id| @functions << id[identities_function_index]}
       @functions.uniq! #de-dupe
-      @functions.each {|func| puts func}
+      Logger::log_info "The following functional groups were identified:"
+      @functions.each {|function| Logger::log_info function}
       
     end
 
@@ -62,12 +61,15 @@ module Analyzer
         #populate role_users hash with users for each role
         @functions.each do |function| 
           
-          @@identities.each {|identity| @role_users[function] << identity[identities_uid_index] if function == identity[identities_function_index] } 
-        
+          Logger::log_info "Adding users to role #{function}:"
+          
+          @@identities.each do |identity| 
+            @role_users[function] << identity[identities_uid_index] if function == identity[identities_function_index]
+            Logger::log_info "#{identity}" 
+          end 
+          
         end
- 
-        @role_users.each {|role,users| puts "Role: #{role}, contains the following users: #{users}"}
-        
+       
         return @role_users
         
         
@@ -138,7 +140,7 @@ module Analyzer
         # intersect list of all exceptions to flush out true exceptions across all roles assigned
         # Eg.  user has actual permissions of= read;write;edit and is a member of role1:read and role2:write.  this will create exceptions of:
         # ([read,write,edit] - [read]) & ([read,write,edit] - [write]) = edit
-        @user_exceptions[account[ACCOUNTS_UUID_INDEX]] = tmp.inject(:&)
+        @user_exceptions[account[acc_uid_index]] = tmp.inject(:&)
           
       end #accounts
       
