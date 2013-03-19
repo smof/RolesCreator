@@ -10,11 +10,6 @@ require 'builder'
 
 module File_Manager
 
-  #globals #########################################################################################
-  @date=Time.now.strftime("%d-%m-%Y_%H%M") #date formatter
-  #globals #########################################################################################
-
-
   #file reader
   def File_Manager.read_file path, col_separator, header
     
@@ -26,15 +21,16 @@ module File_Manager
       CSV.foreach(path, {:col_sep=>col_separator, :headers=>header, :return_headers=>false}) do |row|
     
         file_contents << row
-        
+        Logger::print_to_screen "." 
+                
       end
             
       return file_contents
       
     else
     
-      puts "File #{path} doesn't exist.  Oops!" 
-      return
+      Logger::log_error "File #{path} not found. Exiting" 
+      exit
       
     end
     
@@ -45,11 +41,13 @@ module File_Manager
     
     #init output file
     @output_file = File.open(path, 'w')
-    
+        
     if format.downcase == "csv" #CSV print out stuff
                         
         File_Manager.flatten_hash_for_writing(contents).each do |record| #bit of reformatting from hash to array of strings
+          
           @output_file.puts record.to_s
+                   
         end
         
         @output_file.close
@@ -63,7 +61,7 @@ module File_Manager
     
     end
        
-    if format.downcase == "XML"
+    if format.downcase == "xml"
       
         xml = Builder::XmlMarkup.new( :target => @output_file, :indent => 2 )
         xml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
@@ -71,15 +69,15 @@ module File_Manager
         #formatting is different dep on contents
         if type == "RU" #role users
           
-          xml.roles do #could be roles or users
+          xml.roles do #roles tag
           
-            contents.each do | role, user | #could be role:user, role:entitlements, user:entitlements
+            contents.each do | role, user | #iterate over role users hash
             
-              xml.role(:name=>role) do #could be :name => role or :id => user
+              xml.role(:name=>role) do #role tag name=role
               
-                xml.users do #could be users or entitlements
-                  user.each do |u| #could be user or entitlement
-                    xml.user u #could be user or entitlement
+                xml.users do #users tag
+                  user.each do |u| #iterate over array of users
+                    xml.user u #user tag
                   end
                 end
               
@@ -119,28 +117,27 @@ module File_Manager
         if type == "UE" #user exceptions
           
           xml.users do 
-          
-            contents.each do | user, entitlement | 
+                      
+             contents.each do | user, entitlement | 
             
-              xml.user(:id=>user) do 
+                xml.user(:id=>user) do 
               
-                xml.entitlements do 
-                  entitlement.each do |e| 
-                    xml.entitlement e 
+                  xml.entitlements do 
+                    
+                      entitlement.each do |e| 
+                        xml.entitlement e 
+                      end
+                    
                   end
-                end
               
-              end #end role
+                end #end user
             
-            end #end contents
-          
-          end #end roles
-          
-          
+              end #end contents
+            
+          end #end exceptions
+
         end
-        
-        
-           
+   
     end #end XML if
 
   end #end function

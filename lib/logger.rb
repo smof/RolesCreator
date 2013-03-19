@@ -4,20 +4,22 @@
 module Logger
     
     #globals #########################################################################################
-    $log_file = "../identelligence.log"
-    $write_to_logs = true #turns logging on / off
+    DATE=Time.now.strftime("%d-%m-%Y_%H%M") #date formatter
+    LOG_FILE = "logs/identelligence_#{DATE}.log"
+    Logger::WRITE_TO_FILE = false #managed via yml file
+    Logger::PRINT_TO_SCREEN = false #managed via yml file
     #globals #########################################################################################
     
     #Log writer
     def Logger.write_to_log message
       
-      date=Time.now.strftime("%d-%m-%Y_%H:%M:%S") #more detailed date as $date can't contain :
+      date=Time.now.strftime("%d-%m-%Y %H:%M:%S") #more detailed date as DATE can't contain :
       
-      unless $write_to_logs == false
+      if WRITE_TO_FILE
         
-        File.open($log_file,"a") do |log|
+        File.open(LOG_FILE,"a") do |log|
       
-          log.puts "#{date} Fingerprint.rb #{message}"
+          log.puts "#{date} Identelligence #{message}"
          
         end
       end
@@ -27,10 +29,42 @@ module Logger
     #write to screen
     def Logger.print_to_screen message
       
-      #do something with message to push to console
+      if PRINT_TO_SCREEN
       
+        STDERR.print message
+          
+      end
+          
+    end
+    
+    #error to log
+    def Logger.log_error message
+      
+      message = "ERROR #{message}"
+      write_to_log message
+      print_to_screen message
       
     end
+    
+    #info to log
+    def Logger.log_info message
+      
+      message = "INFO #{message}"
+      write_to_log message
+      print_to_screen message
+      
+    end
+    
+    #error to log
+    def Logger.log_warning message
+      
+      message = "WARNING #{message}"
+      write_to_log message
+      print_to_screen message
+      
+    end
+    
+    
     
 end #module
    

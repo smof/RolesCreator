@@ -140,7 +140,7 @@ module Analyzer
         # intersect list of all exceptions to flush out true exceptions across all roles assigned
         # Eg.  user has actual permissions of= read;write;edit and is a member of role1:read and role2:write.  this will create exceptions of:
         # ([read,write,edit] - [read]) & ([read,write,edit] - [write]) = edit
-        @user_exceptions[account[acc_uid_index]] = tmp.inject(:&)
+        @user_exceptions[account[acc_uid_index]] = tmp.empty? ? [] : tmp.inject(:&)
           
       end #accounts
       
