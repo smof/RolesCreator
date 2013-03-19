@@ -6,8 +6,8 @@ module Logger
     #globals #########################################################################################
     DATE=Time.now.strftime("%d-%m-%Y_%H%M") #date formatter
     LOG_FILE = "logs/identelligence_#{DATE}.log"
-    Logger::WRITE_TO_FILE = false #managed via yml file
-    Logger::PRINT_TO_SCREEN = false #managed via yml file
+    WRITE_TO_FILE = true #managed via yml file
+    PRINT_TO_SCREEN = true #managed via yml file
     #globals #########################################################################################
     
     #Log writer
@@ -31,7 +31,7 @@ module Logger
       
       if PRINT_TO_SCREEN
       
-        STDERR.print message
+        STDOUT.print message
           
       end
           
