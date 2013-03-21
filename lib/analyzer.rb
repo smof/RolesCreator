@@ -103,7 +103,7 @@ module Analyzer
             
             #this is neat.  Performs intersection of user entitlement arrays.  brings back only similar entitlements.
             #this is basically role mining at 100% threshold similarity
-            @role_entitlements[role] = tmp.inject(:&) 
+            @role_entitlements[role] = tmp.empty? ? [] : tmp.inject(:&) 
 
             Logger::log_info "Defined entitlements for role #{role}: #{@role_entitlements[role].length} entitlements added:\n"
             @role_entitlements[role].each {|entitlement| Logger::log_info "#{entitlement}\n"}
