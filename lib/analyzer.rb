@@ -35,7 +35,7 @@ module Analyzer
 
       @@identities.each {|id| @functions << id[identities_function_index]}
       @functions.uniq! #de-dupe
-      Logger::log_info "The following functional groups were identified:"
+      Logger::log_info "The following functional groups were identified:\n"
       @functions.each {|function| Logger::log_info function}
       
     end
@@ -61,12 +61,12 @@ module Analyzer
         #populate role_users hash with users for each role
         @functions.each do |function| 
           
-          Logger::log_info "Adding users to role #{function}:"
-          
           @@identities.each do |identity| 
             @role_users[function] << identity[identities_uid_index] if function == identity[identities_function_index]
-            Logger::log_info "#{identity}" 
+            Logger::print_to_screen "." 
           end 
+          
+          Logger::log_info "Adding users to role #{function}: #{@role_users[function].length}\n"
           
         end
        
@@ -105,11 +105,14 @@ module Analyzer
             #this is basically role mining at 100% threshold similarity
             @role_entitlements[role] = tmp.inject(:&) 
 
+            Logger::log_info "Defined entitlements for role #{role}: #{@role_entitlements[role].length} entitlements added:\n"
+            @role_entitlements[role].each {|entitlement| Logger::log_info "#{entitlement}\n"}
+                        
+            
         end #role_user keys iteration
       
       #some debug stuff.  push to logger
-      @role_entitlements.each {|role,entitlements| puts "Role #{role}, contains the following entitlements: #{entitlements}"}
-      
+            
       return @role_entitlements
       
     end 
@@ -141,12 +144,12 @@ module Analyzer
         # Eg.  user has actual permissions of= read;write;edit and is a member of role1:read and role2:write.  this will create exceptions of:
         # ([read,write,edit] - [read]) & ([read,write,edit] - [write]) = edit
         @user_exceptions[account[acc_uid_index]] = tmp.empty? ? [] : tmp.inject(:&)
+        
+        Logger::log_info "Identified entitlement exceptions for #{account[acc_uid_index]}: #{@user_exceptions[account[acc_uid_index]].length} found\n"  
+        @user_exceptions[account[acc_uid_index]].each {|exception| Logger::log_info "#{exception}\n" }
           
       end #accounts
-      
-      #debug stuff - push to logger
-      @user_exceptions.each {|user,entitlements| puts "User #{user}, is assigned the following exception entitlements: #{entitlements}"}
-      
+            
       return @user_exceptions
       
     end
@@ -165,6 +168,8 @@ module Analyzer
         
         @role_users[role[0]] = role[1].split(role_users_multivalue_separator)
         
+        Logger::print_to_screen "."
+        
       end
       
       return @role_users
@@ -182,6 +187,8 @@ module Analyzer
       role_entitlements_csv.each do |role| 
         
         @role_entitlements[role[0]] = role[1].split(role_entitlements_mv)
+        
+        Logger::print_to_screen "."
         
       end
       

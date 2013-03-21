@@ -68,10 +68,6 @@ module Identelligence
   USER_EXCEPTIONS_OUTPUT_FORMAT = config['output']['user_exceptions']['format']
   USER_EXCEPTIONS_OUTPUT = config['output']['user_exceptions']['file']
   
-  #logging
-  Logger::WRITE_TO_FILE = config['logging']['write_to_file']
-  Logger::PRINT_TO_SCREEN = config['logging']['print_to_screen']
-  
     
   #run through
   Logger::log_info "Starting..."
@@ -79,7 +75,7 @@ module Identelligence
   #see what options have been set in the config file
   if CREATE_ROLE_USERS
     
-    Logger::log_info "Creating new shell roles..."
+    Logger::log_info "Creating new shell roles...\n"
     
     #read in auth source
     Logger::log_info "Reading identities..."
@@ -87,11 +83,11 @@ module Identelligence
     
     
     #create shell roles
-    Logger::log_info "Creating roles..."
+    Logger::log_info "Creating roles...\n"
     role_users = Analyzer::create_role_users IDS_UID_INDEX, IDS_FUNCTION_INDEX
     
-        
     #write out to file
+    Logger::log_info "Writing roles file...\n"
     File_Manager::write_file ROLE_USERS_OUTPUT, ROLE_USERS_OUTPUT_FORMAT, role_users, "RU"
         
   else
@@ -99,35 +95,34 @@ module Identelligence
     #only bother with this stuff if other options are true and role user file needs to be read in
     if CREATE_ROLE_ENTITLEMENTS || CREATE_USER_EXCEPTIONS
     
-       puts "Reading in shell roles..."
+       Logger::log_info "Reading in shell roles...\n"
        roles = Analyzer::read_role_users ROLE_USERS_INPUT, ROLE_USERS_INPUT_COL_SEPARATOR, 
             ROLE_USERS_INPUT_HEADER_LINE, ROLE_USER_MULTIVALUE_SEPARATOR
                          
     end
-     
     
   end
   
   if CREATE_ROLE_ENTITLEMENTS
   
+      Logger::log_info "Reading accounts file...\n"
       Analyzer::read_accounts ACC_INPUT, ACC_INPUT_COL_SEPARATOR, ACC_INPUT_HEADER_LINE
-      puts "Creating role entitlements..."
       
+      Logger::log_info "Creating role entitlements...\n"
       role_entitlements = Analyzer::create_role_entitlements ACC_UID_INDEX, ACC_MULTIVALUE_COL_SEPARATOR, ACC_PERMISSION_INDEX
       
-      puts "Writing role entitlements..."
-      
+      Logger::log_info "Writing role entitlements file...\n"     
       File_Manager::write_file ROLE_ENTS_OUTPUT, ROLE_ENTS_OUTPUT_FORMAT, role_entitlements, "RE"  
         
   else
     
-      #only bother with this is user exceptions need creating
+      #only both with this is user exceptions need creating
       if CREATE_USER_EXCEPTIONS
         
-        puts "Reading in role entitlements..."
+        Logger::log_info "Reading role users...\n"
         Analyzer::read_accounts ACC_INPUT, ACC_INPUT_COL_SEPARATOR, ACC_INPUT_HEADER_LINE
                 
-        #populate role entitlements from existing source    
+        Logger::log_info "Reading role entitlements...\n"
         Analyzer::read_role_entitlements ROLE_ENTS_INPUT, ROLE_ENTS_COL_SEPARATOR, 
                 ROLE_ENTS_HEADER_LINE, ROLE_ENTS_MULTIVALUE_SEPARATOR 
       end   
@@ -136,9 +131,10 @@ module Identelligence
   
   if CREATE_USER_EXCEPTIONS
             
-      puts "Creating user exceptions..."
+      Logger::log_info "Creating user exceptions...\n"
       user_exceptions = Analyzer::create_user_exceptions ACC_UID_INDEX, ACC_PERMISSION_INDEX, ACC_MULTIVALUE_COL_SEPARATOR
-      puts "Writing user exceptions..."
+      
+      Logger::log_info "Writing user exceptions file...\n"
       File_Manager::write_file USER_EXCEPTIONS_OUTPUT, USER_EXCEPTIONS_OUTPUT_FORMAT, user_exceptions, "UE"
         
   end
