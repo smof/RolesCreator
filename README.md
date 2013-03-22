@@ -2,12 +2,15 @@ Identelligence
 ==============
 Identity intellience for role & access management
 </br>
-<br>Features</b></br>
+<b>Features</b>
+</br>
 Role Creation - creates roles and user memberships for business roles
 <br/>
 Role Entitlements - assign entitlements to roles based on analysis of role member system accounts
 <br/>
 User Exceptions - identifies any entitlements that are directly assigned to a user and not assigned via a role
+<br/>
+No persistent storage needed.  Purely a 'run time' analytics engine.
 <br/>
 <b>Inputs</b>
 <br/>
