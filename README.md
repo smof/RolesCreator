@@ -1,9 +1,8 @@
-Identelligence
-==============
-Identity intellience for role & access management
-</br>
+Identelligence - Identity Intellience for Role & Access management
+==================================================================
+<br/>
 <b>Features</b>
-</br>
+<br/>
 Role Creation - creates roles and user memberships for business roles
 <br/>
 Role Entitlements - assign entitlements to roles based on analysis of role member system accounts
