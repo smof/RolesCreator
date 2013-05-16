@@ -1,0 +1,101 @@
+employeeid,fullname,firstname,lastname,email,department,department-job_title,job_title,manager,start_date
+AH58413,Angella Hudson,Angella,Hudson,Angella.Hudson@Example.com,IT,IT-Manager,Manager,CEO,2008-01-25
+AG62352,Aleisha Gibson,Aleisha,Gibson,Aleisha.Gibson@Example.com,Finance,Finance-Manager,Manager,CEO,2009-01-14
+DB65562,Derek Bennett,Derek,Bennett,Derek.Bennett@Example.com,Sales,Sales-Manager,Manager,CEO,2012-05-15
+TC21464,Tami Cole,Tami,Cole,Tami.Cole@Example.com,Engineering,Engineering-Manager,Manager,CEO,2006-02-10
+TS83039,Tamra Shaw,Tamra,Shaw,Tamra.Shaw@Example.com,Accounts,Accounts-Manager,Manager,CEO,2012-09-06
+CC65735,Chester Cooper,Chester,Cooper,Chester.Cooper@Example.com,Marketing,Marketing-Manager,Manager,CEO,2007-10-13
+CM84039,Chantal Matthews,Chantal,Matthews,Chantal.Matthews@Example.com,Operations,Operations-Manager,Manager,CEO,2009-09-15
+CW31302,Casandra Wright,Casandra,Wright,Casandra.Wright@Example.com,Research,Research-Manager,Manager,CEO,2009-01-25
+CS79304,Carlyn Simpson,Carlyn,Simpson,Carlyn.Simpson@Example.com,Consulting,Consulting-Manager,Manager,CEO,2009-10-29
+CP1945,Chi Palmer,Chi,Palmer,Chi.Palmer@Example.com,Admin,Admin-Manager,Manager,CEO,2009-01-10
+PH56152,Patience Hunter,Patience,Hunter,Patience.Hunter@Example.com,Partner,Partner-Manager,Manager,CEO,2010-07-04
+TT24316,Tasia Thompson,Tasia,Thompson,Tasia.Thompson@Example.com,HR,HR-Manager,Manager,CEO,2011-06-04
+JW85194,Juli Wilson,Juli,Wilson,Juli.Wilson@Example.com,Logistics,Logistics-Manager,Manager,CEO,2010-11-18
+AB56406,Allyson Bradley,Allyson,Bradley,Allyson.Bradley@Example.com,Communications,Communications-Manager,Manager,CEO,2005-10-31
+SB46586,Sunshine Bell,Sunshine,Bell,Sunshine.Bell@Example.com,Sales,Sales-Rep-I,Rep-I,Derek Bennett,2008-07-14
+CC70610,Carie Collins,Carie,Collins,Carie.Collins@Example.com,Communications,Communications-Exec,Exec,Allyson Bradley,2007-05-04
+YB55716,Yasmine Brooks,Yasmine,Brooks,Yasmine.Brooks@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2008-06-15
+TW81557,Tiffani Walker,Tiffani,Walker,Tiffani.Walker@Example.com,Accounts,Accounts-Receivable-Clerk,Receivable-Clerk,Tamra Shaw,2009-01-03
+SC84687,Stefani Cox,Stefani,Cox,Stefani.Cox@Example.com,Marketing,Marketing-Inbound-Exec-I,Inbound-Exec-I,Chester Cooper,2008-12-02
+BW83887,Bennie Wright,Bennie,Wright,Bennie.Wright@Example.com,Operations,Operations-Analyst1,Analyst1,Chantal Matthews,2007-02-03
+ME17111,Marilynn Evans,Marilynn,Evans,Marilynn.Evans@Example.com,Communications,Communications-Exec,Exec,Allyson Bradley,2012-05-25
+DP99941,Darlene Phillips,Darlene,Phillips,Darlene.Phillips@Example.com,Finance,Finance-Administrator-III,Administrator-III,Aleisha Gibson,2012-09-10
+AC4540,Annabel Carr,Annabel,Carr,Annabel.Carr@Example.com,Research,Research-Assistant,Assistant,Casandra Wright,2012-01-16
+BP85995,Boyd Phillips,Boyd,Phillips,Boyd.Phillips@Example.com,Operations,Operations-Analyst1,Analyst1,Chantal Matthews,2011-08-11
+AB60208,Angelique Butler,Angelique,Butler,Angelique.Butler@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2006-06-11
+TG65027,Tynisha Gardner,Tynisha,Gardner,Tynisha.Gardner@Example.com,Communications,Communications-Writer-Internal,Writer-Internal,Allyson Bradley,2011-10-06
+KM74226,Kesha Macdonald,Kesha,Macdonald,Kesha.Macdonald@Example.com,Marketing,Marketing-Inbound-Exec-II,Inbound-Exec-II,Chester Cooper,2009-12-04
+AA68313,Anglea Armstrong,Anglea,Armstrong,Anglea.Armstrong@Example.com,Engineering,Engineering-Engineer,Engineer,Tami Cole,2005-10-28
+MW75511,Melodi Williams,Melodi,Williams,Melodi.Williams@Example.com,Consulting,Consulting-Consultant,Consultant,Carlyn Simpson,2010-10-28
+PC29297,Pura Cunningham,Pura,Cunningham,Pura.Cunningham@Example.com,Communications,Communications-Exec,Exec,Allyson Bradley,2006-02-11
+ES41692,Eulah Smith,Eulah,Smith,Eulah.Smith@Example.com,Research,Research-Assistant,Assistant,Casandra Wright,2010-10-31
+RC78444,Racheal Campbell,Racheal,Campbell,Racheal.Campbell@Example.com,Operations,Operations-Analyst2,Analyst2,Chantal Matthews,2008-02-20
+EH63845,Epifania Harrison,Epifania,Harrison,Epifania.Harrison@Example.com,Operations,Operations-Analyst2,Analyst2,Chantal Matthews,2009-10-31
+AG87058,Alix Gill,Alix,Gill,Alix.Gill@Example.com,IT,IT-Developer-III,Developer-III,Angella Hudson,2010-06-04
+SB56580,Simona Barnes,Simona,Barnes,Simona.Barnes@Example.com,Partner,Partner-Relations-Manager,Relations-Manager,Patience Hunter,2006-11-07
+CR47890,Charlena Reynolds,Charlena,Reynolds,Charlena.Reynolds@Example.com,Admin,Admin-Receptionist,Receptionist,Chi Palmer,2006-05-14
+RL67032,Rhett Lee,Rhett,Lee,Rhett.Lee@Example.com,Finance,Finance-Administrator-II,Administrator-II,Aleisha Gibson,2006-10-08
+DC56068,Dana Cooper,Dana,Cooper,Dana.Cooper@Example.com,Research,Research-Assistant,Assistant,Casandra Wright,2008-09-26
+GF39538,Garnet Fox,Garnet,Fox,Garnet.Fox@Example.com,Marketing,Marketing-Inbound-Exec-I,Inbound-Exec-I,Chester Cooper,2005-08-08
+SM9859,Shakira Mills,Shakira,Mills,Shakira.Mills@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2009-12-24
+LR39769,Lakia Robertson,Lakia,Robertson,Lakia.Robertson@Example.com,Consulting,Consulting-Consultant,Consultant,Carlyn Simpson,2011-04-13
+HL44834,Harlan Lee,Harlan,Lee,Harlan.Lee@Example.com,Consulting,Consulting-Consultant,Consultant,Carlyn Simpson,2005-12-08
+LJ72596,Lupe James,Lupe,James,Lupe.James@Example.com,HR,HR-Exec-III,Exec-III,Tasia Thompson,2009-12-11
+LL90242,Lynne Lawrence,Lynne,Lawrence,Lynne.Lawrence@Example.com,Research,Research-Assistant,Assistant,Casandra Wright,2009-12-31
+RR30588,Rachell Richardson,Rachell,Richardson,Rachell.Richardson@Example.com,Consulting,Consulting-Consultant,Consultant,Carlyn Simpson,2006-03-31
+MP52278,Martin Parker,Martin,Parker,Martin.Parker@Example.com,Communications,Communications-Writer-Internal,Writer-Internal,Allyson Bradley,2007-11-15
+JG13645,Jamee Gibson,Jamee,Gibson,Jamee.Gibson@Example.com,Communications,Communications-Exec,Exec,Allyson Bradley,2010-10-14
+RA68592,Rubi Allen,Rubi,Allen,Rubi.Allen@Example.com,IT,IT-Analyst,Analyst,Angella Hudson,2010-05-29
+GP45971,Genna Phillips,Genna,Phillips,Genna.Phillips@Example.com,Accounts,Accounts-Receivable-Clerk,Receivable-Clerk,Tamra Shaw,2007-12-13
+IB845,Ignacio Baker,Ignacio,Baker,Ignacio.Baker@Example.com,Engineering,Engineering-Engineer,Engineer,Tami Cole,2010-10-11
+JW90379,Jin Wilson,Jin,Wilson,Jin.Wilson@Example.com,Finance,Finance-Administrator-II,Administrator-II,Aleisha Gibson,2012-03-02
+CW68437,Coralee Wood,Coralee,Wood,Coralee.Wood@Example.com,Partner,Partner-Relations-Manager,Relations-Manager,Patience Hunter,2008-03-28
+RR88356,Robert Robertson,Robert,Robertson,Robert.Robertson@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2006-07-03
+CR64090,Cherlyn Rogers,Cherlyn,Rogers,Cherlyn.Rogers@Example.com,Sales,Sales-Rep-II,Rep-II,Derek Bennett,2011-09-11
+LK58978,Linsey Khan,Linsey,Khan,Linsey.Khan@Example.com,Operations,Operations-Analyst2,Analyst2,Chantal Matthews,2007-05-31
+WA70719,Wilfred Andrews,Wilfred,Andrews,Wilfred.Andrews@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2006-01-31
+PB63704,Polly Bradley,Polly,Bradley,Polly.Bradley@Example.com,Communications,Communications-Writer-Internal,Writer-Internal,Allyson Bradley,2009-01-08
+OM39930,Oscar Murray,Oscar,Murray,Oscar.Murray@Example.com,Accounts,Accounts-Payable-Clerk-I,Payable-Clerk-I,Tamra Shaw,2010-10-08
+KG14894,Kristen Gardner,Kristen,Gardner,Kristen.Gardner@Example.com,HR,HR-Exec-III,Exec-III,Tasia Thompson,2005-02-06
+AP56123,Alethea Powell,Alethea,Powell,Alethea.Powell@Example.com,Marketing,Marketing-Inbound-Exec-II,Inbound-Exec-II,Chester Cooper,2005-07-29
+CS27476,Claretta Saunders,Claretta,Saunders,Claretta.Saunders@Example.com,HR,HR-Exec-II,Exec-II,Tasia Thompson,2009-03-28
+CP32186,Cheree Phillips,Cheree,Phillips,Cheree.Phillips@Example.com,Sales,Sales-Rep-III,Rep-III,Derek Bennett,2009-06-19
+YG65209,Yang Gardner,Yang,Gardner,Yang.Gardner@Example.com,Accounts,Accounts-Payable-Clerk-II,Payable-Clerk-II,Tamra Shaw,2007-10-30
+BW57421,Bradford Wright,Bradford,Wright,Bradford.Wright@Example.com,Marketing,Marketing-Outbound-Exec-I,Outbound-Exec-I,Chester Cooper,2005-02-12
+FC32954,Flora Clark,Flora,Clark,Flora.Clark@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2010-06-08
+GM35665,Garland Mills,Garland,Mills,Garland.Mills@Example.com,Communications,Communications-Exec,Exec,Allyson Bradley,2007-02-24
+LS54485,Luther Stevens,Luther,Stevens,Luther.Stevens@Example.com,Partner,Partner-Relations-Manager,Relations-Manager,Patience Hunter,2010-01-23
+DR74427,Darci Rogers,Darci,Rogers,Darci.Rogers@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2010-01-09
+NR37776,Neil Robertson,Neil,Robertson,Neil.Robertson@Example.com,IT,IT-Analyst,Analyst,Angella Hudson,2005-01-18
+CA74215,Celena Allen,Celena,Allen,Celena.Allen@Example.com,Finance,Finance-Payroll-Clerk,Payroll-Clerk,Aleisha Gibson,2010-09-17
+SM27215,Sheryll Mcdonald,Sheryll,Mcdonald,Sheryll.Mcdonald@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2005-12-29
+CR71539,Carie Ryan,Carie,Ryan,Carie.Ryan@Example.com,IT,IT-Developer-I,Developer-I,Angella Hudson,2005-01-01
+SM74938,Stefania Murphy,Stefania,Murphy,Stefania.Murphy@Example.com,Accounts,Accounts-Payable-Clerk-I,Payable-Clerk-I,Tamra Shaw,2005-01-05
+JA19575,Johanne Anderson,Johanne,Anderson,Johanne.Anderson@Example.com,Marketing,Marketing-Inbound-Exec-I,Inbound-Exec-I,Chester Cooper,2008-12-08
+LG61039,Leone Grant,Leone,Grant,Leone.Grant@Example.com,Admin,Admin-Receptionist,Receptionist,Chi Palmer,2011-06-17
+YL70240,Yung Lee,Yung,Lee,Yung.Lee@Example.com,Marketing,Marketing-Outbound-Exec-I,Outbound-Exec-I,Chester Cooper,2007-03-21
+LT14179,Lurlene Taylor,Lurlene,Taylor,Lurlene.Taylor@Example.com,HR,HR-Exec-II,Exec-II,Tasia Thompson,2011-07-17
+KH5909,Kia Harvey,Kia,Harvey,Kia.Harvey@Example.com,Marketing,Marketing-Inbound-Exec-II,Inbound-Exec-II,Chester Cooper,2009-05-24
+IW37991,Ivan Wells,Ivan,Wells,Ivan.Wells@Example.com,Research,Research-Assistant,Assistant,Casandra Wright,2006-03-28
+JM35317,Julio Macdonald,Julio,Macdonald,Julio.Macdonald@Example.com,Marketing,Marketing-Outbound-Exec-I,Outbound-Exec-I,Chester Cooper,2010-11-10
+JS10043,Jacki Saunders,Jacki,Saunders,Jacki.Saunders@Example.com,Engineering,Engineering-Engineer,Engineer,Tami Cole,2007-06-08
+EM39698,Ezequiel Marshall,Ezequiel,Marshall,Ezequiel.Marshall@Example.com,Marketing,Marketing-Outbound-Exec-I,Outbound-Exec-I,Chester Cooper,2010-03-16
+CC97369,Chante Cole,Chante,Cole,Chante.Cole@Example.com,Engineering,Engineering-Engineer,Engineer,Tami Cole,2011-12-24
+EC25843,Elisa Carr,Elisa,Carr,Elisa.Carr@Example.com,Engineering,Engineering-Engineer,Engineer,Tami Cole,2006-10-16
+DB99190,Deandrea Bradley,Deandrea,Bradley,Deandrea.Bradley@Example.com,Marketing,Marketing-Inbound-Exec-I,Inbound-Exec-I,Chester Cooper,2005-05-28
+RH13517,Renate Hamilton,Renate,Hamilton,Renate.Hamilton@Example.com,Sales,Sales-Field-Rep-I,Field-Rep-I,Derek Bennett,2008-04-19
+LH40961,Leonarda Hudson,Leonarda,Hudson,Leonarda.Hudson@Example.com,Partner,Partner-Relations-Manager,Relations-Manager,Patience Hunter,2007-01-06
+DM82517,Doretha Matthews,Doretha,Matthews,Doretha.Matthews@Example.com,IT,IT-Analyst,Analyst,Angella Hudson,2011-01-05
+HT35329,Hattie Thomson,Hattie,Thomson,Hattie.Thomson@Example.com,Research,Research-Assistant,Assistant,Casandra Wright,2005-09-18
+HM44811,Humberto Murphy,Humberto,Murphy,Humberto.Murphy@Example.com,Engineering,Engineering-Engineer,Engineer,Tami Cole,2011-10-17
+DM12988,Darleen Murray,Darleen,Murray,Darleen.Murray@Example.com,Operations,Operations-Analyst2,Analyst2,Chantal Matthews,2011-10-29
+MJ62027,Marylouise Jones,Marylouise,Jones,Marylouise.Jones@Example.com,Operations,Operations-Analyst2,Analyst2,Chantal Matthews,2009-11-28
+ES4861,Ellena Shaw,Ellena,Shaw,Ellena.Shaw@Example.com,Partner,Partner-Relations-Manager,Relations-Manager,Patience Hunter,2007-02-19
+GM63179,Gina Morris,Gina,Morris,Gina.Morris@Example.com,Logistics,Logistics-Analyst-I,Analyst-I,Juli Wilson,2007-11-03
+SG83140,Shyla Gordon,Shyla,Gordon,Shyla.Gordon@Example.com,Sales,Sales-Rep-III,Rep-III,Derek Bennett,2006-08-28
+VD50311,Valery Dean,Valery,Dean,Valery.Dean@Example.com,IT,IT-Developer-III,Developer-III,Angella Hudson,2009-03-04
+RH54420,Rebecca Holmes,Rebecca,Holmes,Rebecca.Holmes@Example.com,Finance,Finance-Payroll-Clerk,Payroll-Clerk,Aleisha Gibson,2011-05-29
+AJ56984,Annabelle Johnson,Annabelle,Johnson,Annabelle.Johnson@Example.com,Consulting,Consulting-Consultant,Consultant,Carlyn Simpson,2010-11-15
+HB93587,Harriett Bradley,Harriett,Bradley,Harriett.Bradley@Example.com,Consulting,Consulting-Consultant,Consultant,Carlyn Simpson,2010-10-20
+ER82374,Errol Ross,Errol,Ross,Errol.Ross@Example.com,IT,IT-Developer-III,Developer-III,Angella Hudson,2008-04-29
