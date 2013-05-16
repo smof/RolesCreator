@@ -6,8 +6,8 @@ module Logger
     #globals #########################################################################################
     DATE=Time.now.strftime("%d-%m-%Y_%H%M") #date formatter
     LOG_FILE = "logs/rolescreator#{DATE}.log"
-    WRITE_TO_FILE = true #managed via yml file
-    PRINT_TO_SCREEN = true #managed via yml file
+    WRITE_TO_FILE = true #prints output to file
+    PRINT_TO_SCREEN = true #prints output to console
     #globals #########################################################################################
     
     #Log writer
