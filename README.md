@@ -24,3 +24,7 @@ Files can be exported to XML, JSON or CSV format.
 Currently only analyses one system per run.  If multiple systems require role analysis, simply run more than once with new input files.
 <br/>
 Edit the config.yml with appropriate data input parameters and system requirements.  Can extend existing roles if made available in CSV input.
+<br/>
+<br/>
+The sample_data/ directory contains 4 sample data files that can be used to demonstate the utility.  Identities.csv is an auth source example, with 
+sample entitlements files for an LDAP, MS-SQL database and Unix system.
