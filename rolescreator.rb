@@ -2,17 +2,18 @@
 #Simon Moffatt
 #Identity intelligence and RBAC acceleration utility
 #Command Line Interface main module
+#RoleCreator
 
 #requires
 require 'rubygems'
 require 'yaml'
 
-#Identelligence
+#RolesCreator
 require './lib/analyzer' #core analyzer
 require './lib/file_manager' #read/write files
 require './lib/logger' #console and file logger
 
-module Identelligence
+module RolesCreator
 
   #slurp in YML config options
   yml_file = 'config.yml'

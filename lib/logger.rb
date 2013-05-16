@@ -5,7 +5,7 @@ module Logger
     
     #globals #########################################################################################
     DATE=Time.now.strftime("%d-%m-%Y_%H%M") #date formatter
-    LOG_FILE = "logs/identelligence_#{DATE}.log"
+    LOG_FILE = "logs/rolescreator#{DATE}.log"
     WRITE_TO_FILE = true #managed via yml file
     PRINT_TO_SCREEN = true #managed via yml file
     #globals #########################################################################################
@@ -19,7 +19,7 @@ module Logger
         
         File.open(LOG_FILE,"a") do |log|
       
-          log.puts "#{date} Identelligence #{message}"
+          log.puts "#{date} RolesCreator #{message}"
          
         end
       end

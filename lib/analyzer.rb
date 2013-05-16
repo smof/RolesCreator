@@ -1,5 +1,5 @@
 #Simon Moffatt
-#Analyzer core for Identelligence.  Role creation and exception analysis
+#Analyzer core for RolesCreator.  Role creation and exception analysis
 
 require 'yaml'
 require './lib/file_manager'

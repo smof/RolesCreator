@@ -1,4 +1,4 @@
-#Identelligence YML config file.  Changeable values to right of colon (:) only!
+#RolesCreator YML config file.  Changeable values to right of colon (:) only!
 analyzer:
   create_role_users: true #performs top down role mining for shell roles.  requires identities file. if set to false requires role users file
   create_role_entitlements: true #creates entitlements for new or existing roles. requires either identities / role users file and accounts file
@@ -11,10 +11,10 @@ input:
     col_separator: ',' #column separator for identities file
     header_line: true #does the first row of the identities file contain column names?
     uuid_index: 1 #zero-based index position of the identities file unique identifier. Eg employeeid
-    function_index: 5 #zero-based index position of the function attribute.  Eg deptartment
+    function_index: 6 #zero-based index position of the function attribute.  Eg deptartment
   accounts:
     file: accounts.csv #path to the system entitlements file (relative to this file)
-    col_separator: ',' #column separator for accounts file
+    col_separator: '|' #column separator for accounts file
     header_line: true #does the first row of the accounts file contain column names?
     uuid_index: 0 #zero-based index position of the accounts file unique identifier. Eg userid
     permission_index: 2 #zero-based index position of the permission attribute. Eg memberOf
@@ -32,14 +32,14 @@ input:
 
 output:
   role_users:
-    file: identelligence_role_users.xml #name of role to user file. Eg. my_role_users.xml
-    format: xml #xml; json; csv
+    file: rc_role_users.json #name of role to user file. Eg. my_role_users.xml
+    format: json #xml; json; csv
   role_entitlements:
-    file: identelligence_role_entitlements.xml #name of the role to entitlements file. Eg. my_role_entitlements.xml
-    format: xml #xml; json; csv
+    file: rc_role_entitlements.json #name of the role to entitlements file. Eg. my_role_entitlements.xml
+    format: json #xml; json; csv
   user_exceptions:
-    file: identelligence_user_exceptions.csv #name of the user exceptions file. Eg user_exceptions.csv
-    format: csv #xml; json; csv
+    file: rc_user_exceptions.json #name of the user exceptions file. Eg user_exceptions.csv
+    format: json #xml; json; csv
     
 regex:
     identities-accounts: // #regular expression to map identities to accounts file
