@@ -2,6 +2,7 @@ RolesCreator - v0.1
 ====================
 <br/>
 <b>Synopsis</b>
+<br/>
 A small robust command line utility to assist in the creation of roles and role entitlements as used by identity and access management provisioning systems.  Can be run
 either as a native Ruby application or using the warbler package Java Jar.
 <br/>
@@ -16,9 +17,11 @@ User Exceptions - identifies any entitlements that are directly assigned to a us
 <br/>
 No persistent storage needed.  Purely a 'run time' analytics engine.
 <br/>
+<br/>
 <b>Inputs</b>
 <br/>
 CSV files from authoritative source containing user identities and a CSV file containing system accounts and entitlements
+<br/>
 <br/>
 <b>Outputs</b>
 <br/>
