@@ -28,3 +28,7 @@ Edit the config.yml with appropriate data input parameters and system requiremen
 <br/>
 The sample_data/ directory contains 4 sample data files that can be used to demonstate the utility.  Identities.csv is an auth source example, with 
 sample entitlements files for an LDAP, MS-SQL database and Unix system.
+<br/>
+<br/>
+The dist/ directory contains a warbler created RolesCreator.jar file that can be used and distributed like any other Java jar file without using the native
+Ruby files.  Simply use the rolescreator.sh or rolescreator.bat file to start. 

@@ -2,12 +2,13 @@
 #Manages file reading and writing and data parsing
 
 #requires
+
 require 'rubygems'
 require 'date'
 require 'csv'
 require 'json'
 require 'builder'
-require './lib/logger'
+require_relative './logger'
 
 module File_Manager
 
@@ -18,6 +19,8 @@ module File_Manager
       
       #slurp in file.  might need to make this more effecient is file is large.  ie over 150k lines etc.
       file_contents = []
+      
+      path = File.absolute_path(path) #first arg is path, second is directory relative to current process, so dir above ./lib/file_manager.rb in this case
                  
       CSV.foreach(path, {:col_sep=>col_separator, :headers=>header, :return_headers=>false}) do |row|
     
@@ -30,7 +33,7 @@ module File_Manager
       
     else
     
-      Logger::log_error "File #{path} not found. Exiting" 
+      Logger::log_error "File #{path} not found. Exiting \n" 
       exit
       
     end
@@ -39,6 +42,8 @@ module File_Manager
 
   #file writer
   def File_Manager.write_file path, format, contents, type
+    
+    path = File.absolute_path(path) #first arg is path, second is directory relative to current process, so dir above ./lib/file_manager.rb in this case
     
     #init output file
     @output_file = File.open(path, 'w')

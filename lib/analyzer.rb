@@ -2,8 +2,8 @@
 #Analyzer core for RolesCreator.  Role creation and exception analysis
 
 require 'yaml'
-require './lib/file_manager'
-require './lib/logger'
+require_relative './file_manager'
+require_relative './logger'
 
 
 module Analyzer
