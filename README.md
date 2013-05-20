@@ -1,7 +1,7 @@
 RolesCreator - v0.1
 ====================
 <br/>
-<b>Synopsis<b/>
+<b>Synopsis</b>
 A small robust command line utility to assist in the creation of roles and role entitlements as used by identity and access management provisioning systems.  Can be run
 either as a native Ruby application or using the warbler package Java Jar.
 <br/>
