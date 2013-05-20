@@ -3,12 +3,32 @@
 
 module Logger
     
-    #globals #########################################################################################
+    #static globals #########################################################################################
     DATE=Time.now.strftime("%d-%m-%Y_%H%M") #date formatter
-    LOG_FILE = "rolescreator#{DATE}.log"
-    WRITE_TO_FILE = true #prints output to file
-    PRINT_TO_SCREEN = true #prints output to console
-    #globals #########################################################################################
+    #static globals #########################################################################################
+    
+    #slurp in log settings from YML - don't like this as reading YML twice as reading in rolescreator.rb too...
+    yml_file = File.expand_path('../../conf/config.yml', __FILE__)
+  
+    if File.exist? yml_file
+    
+        config = YAML::load(File.open(yml_file))
+              
+    else
+    
+        exit
+        
+    end
+    
+    #globals from YML #################################################################################
+    LOG_FILE = "#{config['logging']['log_file_location']}_#{DATE}"
+    #LOG_FILE = "rolescreator#{DATE}.log"
+    WRITE_TO_FILE = config['logging']['write_to_file']
+    #WRITE_TO_FILE = true #prints output to file
+    PRINT_TO_SCREEN = config['logging']['print_to_screen']
+    #PRINT_TO_SCREEN = true #prints output to console
+    #globals from YML #################################################################################
+    
     
     #Log writer
     def Logger.write_to_log message
