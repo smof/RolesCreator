@@ -36,7 +36,7 @@ module Analyzer
       @@identities.each {|id| @functions << id[identities_function_index]}
       @functions.uniq! #de-dupe
       Logger::log_info "The following functional groups were identified:\n"
-      @functions.each {|function| Logger::log_info function}
+      @functions.each {|function| Logger::log_info "#{function}\n"}
       
     end
 
@@ -63,7 +63,7 @@ module Analyzer
           
           @@identities.each do |identity| 
             @role_users[function] << identity[identities_uid_index] if function == identity[identities_function_index]
-            Logger::print_to_screen "." 
+            #Logger::print_to_screen "." 
           end 
           
           Logger::log_info "Adding users to role #{function}: #{@role_users[function].length}\n"
@@ -168,7 +168,7 @@ module Analyzer
         
         @role_users[role[0]] = role[1].split(role_users_multivalue_separator)
         
-        Logger::print_to_screen "."
+        #Logger::print_to_screen "."
         
       end
       
@@ -188,7 +188,7 @@ module Analyzer
         
         @role_entitlements[role[0]] = role[1].split(role_entitlements_mv)
         
-        Logger::print_to_screen "."
+        #Logger::print_to_screen "."
         
       end
       

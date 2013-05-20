@@ -25,7 +25,7 @@ module File_Manager
       CSV.foreach(path, {:col_sep=>col_separator, :headers=>header, :return_headers=>false}) do |row|
     
         file_contents << row
-        Logger::print_to_screen "." 
+        #Logger::print_to_screen "." 
                 
       end
             
@@ -53,7 +53,7 @@ module File_Manager
         File_Manager.flatten_hash_for_writing(contents).each do |record| #bit of reformatting from hash to array of strings
           
           @output_file.puts record.to_s
-          Logger::print_to_screen "."
+          #Logger::print_to_screen "."
                    
         end
         
@@ -64,7 +64,7 @@ module File_Manager
  
           @output_file = File.open(path, 'w') do |file|
             file.write(JSON.pretty_generate(contents))
-            Logger::print_to_screen "."
+            #Logger::print_to_screen "."
           end
     
     end
@@ -86,7 +86,7 @@ module File_Manager
                 xml.users do #users tag
                   user.each do |u| #iterate over array of users
                     xml.user u #user tag
-                    Logger::print_to_screen "."
+                    #Logger::print_to_screen "."
                   end
                 end
               
@@ -110,7 +110,7 @@ module File_Manager
                 xml.entitlements do 
                   entitlement.each do |e| 
                     xml.entitlement e 
-                    Logger::print_to_screen "."
+                    #Logger::print_to_screen "."
                   end
                 end
               
@@ -136,7 +136,7 @@ module File_Manager
                     
                       entitlement.each do |e| 
                         xml.entitlement e 
-                        Logger::print_to_screen "."
+                        #Logger::print_to_screen "."
                       end
                     
                   end
