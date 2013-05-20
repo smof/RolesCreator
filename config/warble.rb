@@ -11,7 +11,7 @@ Warbler::Config.new do |config|
   # config.features = %w(gemjar)
 
   # Application directories to be included in the webapp.
-  # config.dirs = %w(app config db lib log script vendor tmp)
+  config.dirs = %w(lib bin)
 
   # Additional files/directories to include, above those in config.dirs
   # config.includes = FileList["db"]
@@ -78,7 +78,7 @@ Warbler::Config.new do |config|
 
   # Name of the archive (without the extension). Defaults to the basename
   # of the project directory.
-  # config.jar_name = "mywar"
+  config.jar_name = "RolesCreator"
 
   # Name of the MANIFEST.MF template for the war file. Defaults to a simple
   # MANIFEST.MF that contains the version of Warbler used to create the war file.

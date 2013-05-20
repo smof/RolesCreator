@@ -16,8 +16,9 @@ require_relative '../lib/logger' #console and file logger
 module RolesCreator
 
   #slurp in YML config options
-  #yml_file = '../conf/config.yml'
-  yml_file = File.expand_path('../../conf/config.yml', __FILE__)
+  #yml_file = '../config/config.yml'
+  #yml_file = File.expand_path('../../config/config.yml', __FILE__)
+  yml_file = File.absolute_path('./config/config.yml')
   
   if File.exist? yml_file
     

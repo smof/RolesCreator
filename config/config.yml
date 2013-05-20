@@ -42,9 +42,9 @@ output:
     format: json #xml; json; csv
     
 logging:
-  write_to_file: false #true or false. Determines whether log file is created or not
+  write_to_file: true #true or false. Determines whether log file is created or not
   log_file_location: ./rolescreator.log #path to log file. Eg. ./logs/rolescreator.log. File will be appended with run time date for audit.
-  print_to_screen: true #true or false.  Determines whether logs are also printed realtime to console / STDOUT 
+  print_to_screen: false #true or false.  Determines whether logs are also printed realtime to console / STDOUT 
        
 regex:
     identities-accounts: // #regular expression to map identities to accounts file
