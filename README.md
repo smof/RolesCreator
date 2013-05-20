@@ -39,7 +39,7 @@ Edit the config.yml with appropriate data input parameters and system requiremen
 The sample_data/ directory contains 4 sample data files that can be used to demonstate the utility.  Identities.csv is an auth source example, with 
 sample entitlements files for an LDAP, MS-SQL database and Unix system.
 <br/>
-The conf/ directory contains the config.yml file for settings.
+The config/ directory contains the config.yml file for settings.
 <br/>
 The bin/ and lib/ directories contain the core system files written in MRI Ruby.
 <br/>
